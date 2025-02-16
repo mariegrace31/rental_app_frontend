@@ -13,7 +13,8 @@ export default {
         rental_dark_choc: "#533522",
         rental_light_choc: "#B47951",
         rental_beige_1: "#DBAF91",
-        rental_beige_2: "#FBE2D2"
+        rental_beige_2: "#FBE2D2",
+        rental_beige_3: "#FFF6F0"
       },
     },
   },
