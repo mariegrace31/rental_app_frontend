@@ -17,7 +17,7 @@ const slides = [
   { 
     image: bgImage2, 
     title: "Unlock Your Property's Earning Potential!", 
-    description: "List your apartment in just a few minutes and start generating passive income. Connect with trusted renters who are looking for short-term and long-term stays. Whether it's a cozy studio, a beachfront villa, or a city loft, maximize your property's potential and earn effortlessly. Enjoy full control over pricing, availability, and house rules while we take care of the rest!",
+    description: "List your apartment and connect with trusted renters who are looking for short-term and long-term stays. Whether it's a cozy studio, a beachfront villa, or a city loft, maximize your property's potential and earn effortlessly. Enjoy full control over pricing, availability, and house rules while we take care of the rest!",
     buttonText: "Post Your Property",
     buttonLink: "/post-property",
   }
@@ -49,12 +49,12 @@ export default function HeroSection() {
               objectFit="cover"
               className="absolute inset-0 w-full h-full"
             />
-            <div className="absolute inset-0 bg-rental_primary/40 flex items-center">
-              <div className="flex flex-col gap-10 w-[55%] pl-8">
-                <h1 className="text-5xl font-semibold text-rental_beige_3">{slide.title}</h1>
-                <p className="text-[20px] font-light text-rental_beige_3">{slide.description}</p>
+            <div className="absolute inset-0 bg-rental_primary/60 flex items-center">
+              <div className="flex flex-col gap-8 lg:gap-10 w-[90%] lg:w-[55%] pl-5 lg:pl-8">
+                <h1 className="text-2xl lg:text-5xl font-semibold text-rental_beige_3">{slide.title}</h1>
+                <p className="text-[13px] lg:text-[20px] font-light text-rental_beige_3">{slide.description}</p>
                 <Link href={slide.buttonLink}>
-                  <button className="bg-rental_beige_3 py-2 px-6 text-rental_primary text-[20px] flex items-center justify-center gap-2 hover:bg-rental_primary hover:text-rental_beige_3 rounded-3xl">
+                  <button className="bg-rental_beige_3 py-2 px-4 lg:px-6 text-rental_primary text-[13px] lg:text-[20px] flex items-center justify-center gap-2 hover:bg-rental_primary hover:text-rental_beige_3 rounded-3xl">
                     {slide.buttonText} <FaArrowRight />
                   </button>
                 </Link>
@@ -68,7 +68,7 @@ export default function HeroSection() {
         {slides.map((_, index) => (
           <div
             key={index}
-            className={`w-10 h-2 rounded-full cursor-pointer transition-all ${
+            className={`w-10 lg:w-12 h-[6px] rounded-full cursor-pointer transition-all ${
               index === currentSlide ? "bg-rental_primary" : "bg-white"
             }`}
             onClick={() => setCurrentSlide(index)}
