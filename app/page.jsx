@@ -5,6 +5,7 @@ import Link from "next/link";
 import bgImage1 from "../app/assets/hero1.jpg";
 import bgImage2 from "../app/assets/hero2.jpg";
 import { FaArrowRight } from "react-icons/fa6";
+import Booking from "./sections/Booking";
 
 const slides = [
   { 
@@ -12,7 +13,7 @@ const slides = [
     title: "Find Your Perfect Stay, Anywhere!", 
     description: "Discover cozy apartments, luxury stays, and budget-friendly rentals with ease. Whether you're planning a weekend getaway or a long-term stay, find the perfect place that feels just like home. Book hassle-free and enjoy a seamless travel experience with comfort and convenience at your fingertips.",
     buttonText: "Explore Now",
-    buttonLink: "/properties",
+    buttonLink: "/apartments",
   },
   { 
     image: bgImage2, 
@@ -35,7 +36,8 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <div className="relative w-full h-[100vh] overflow-hidden">
+    <section>
+       <div className="relative w-full h-[100vh] overflow-hidden">
       <div 
         className="flex transition-transform duration-1000 ease-in-out h-full w-full"
         style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -50,7 +52,7 @@ export default function HeroSection() {
               objectPosition="center"
               className="absolute inset-0 w-full h-full"
             />
-            <div className="absolute inset-0 bg-rental_primary/60 flex items-center">
+            <div className="absolute inset-0 bg-rental_black/65 flex items-center">
               <div className="flex flex-col gap-8 lg:gap-10 w-[90%] lg:w-[55%] pl-5 lg:pl-8">
                 <h1 className="text-2xl lg:text-5xl font-semibold text-rental_beige_3">{slide.title}</h1>
                 <p className="text-[13px] lg:text-[20px] font-light text-rental_beige_3">{slide.description}</p>
@@ -69,14 +71,16 @@ export default function HeroSection() {
         {slides.map((_, index) => (
           <div
             key={index}
-            className={`w-10 lg:w-12 h-[6px] rounded-full cursor-pointer transition-all ${
-              index === currentSlide ? "bg-rental_primary" : "bg-white"
+            className={` h-[6px] rounded-full cursor-pointer transition-all duration-300 ${
+              index === currentSlide ? "bg-rental_black w-10 lg:w-12" : "bg-white w-3 lg:w-5"
             }`}
             onClick={() => setCurrentSlide(index)}
           />
         ))}
       </div>
-
     </div>
+
+    <Booking />
+    </section>
   );
 }
