@@ -47,6 +47,7 @@ export default function HeroSection() {
               alt="Hero background"
               layout="fill"
               objectFit="cover"
+              objectPosition="center"
               className="absolute inset-0 w-full h-full"
             />
             <div className="absolute inset-0 bg-rental_primary/60 flex items-center">
