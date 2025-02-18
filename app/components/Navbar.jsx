@@ -18,7 +18,7 @@ function Navbar() {
     <nav className={`fixed w-full z-20 flex justify-between p-8 items-center transition-all duration-300 ${scrolled ? 'bg-rental_beige_3 shadow-md' : 'bg-transparent'}`}>
       <div className='flex gap-1 items-center cursor-default'>
         <SiHomebridge className={`text-3xl transition-all duration-300 ${scrolled ? 'text-rental_primary' : 'text-rental_beige_3'}`} />
-        <h4 className={`text-3xl font-semibold tracking-widest transition-all duration-300 ${scrolled ? 'text-rental_primary' : 'text-rental_beige_3'}`}>RENTORA</h4>
+        <h4 className={`text-3xl font-semibold tracking-widest transition-all duration-300 ${scrolled ? 'text-rental_primary' : 'text-rental_beige_3'}`}>RENTO</h4>
       </div>
 
       <div className='flex gap-4'>

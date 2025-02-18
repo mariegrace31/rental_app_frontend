@@ -9,6 +9,7 @@ import Booking from "./sections/Booking";
 import AboutUs from "./sections/AboutUs";
 import Aparts from "./sections/Aparts";
 import Banner from "./sections/Banner";
+import Testimonials from "./sections/Testimonials";
 
 const slides = [
   { 
@@ -87,6 +88,7 @@ export default function HeroSection() {
     <AboutUs />
     <Aparts />
     <Banner />
+    <Testimonials />
     </section>
   );
 }
