@@ -6,6 +6,7 @@ import bgImage1 from "../app/assets/hero1.jpg";
 import bgImage2 from "../app/assets/hero2.jpg";
 import { FaArrowRight } from "react-icons/fa6";
 import Booking from "./sections/Booking";
+import AboutUs from "./sections/AboutUs";
 
 const slides = [
   { 
@@ -81,6 +82,7 @@ export default function HeroSection() {
     </div>
 
     <Booking />
+    <AboutUs />
     </section>
   );
 }
