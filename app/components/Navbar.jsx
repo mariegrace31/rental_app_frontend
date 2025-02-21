@@ -1,14 +1,19 @@
 "use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { SiHomebridge } from "react-icons/si";
 import { FiX } from "react-icons/fi";
 import { FaBarsStaggered } from "react-icons/fa6";
+import { FaUserCircle } from "react-icons/fa";
+import { useAuth } from "../auth/AuthContext";
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+  const { user, setUser, loading } = useAuth();
   const pathname = usePathname();
 
   useEffect(() => {
@@ -19,6 +24,19 @@ function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleLogout = () => {
+    fetch("http://localhost:5001/auth/logout", {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then(() => {
+        setUser(null);
+        setProfileMenuOpen(false);
+      })
+      .catch((error) => console.error("Logout failed", error));
+  };
 
   return (
     <nav
@@ -73,28 +91,49 @@ function Navbar() {
       </div>
 
       <div className="hidden md:flex gap-3">
-        <Link href="/login">
-          <button
-            className={`text-[18px] font-medium py-1 px-7 border-2 cursor-pointer rounded-3xl transition-all duration-300 ${
-              scrolled
-                ? "bg-rental_primary text-rental_beige_3 border-rental_primary hover:bg-rental_beige_3 hover:text-rental_primary"
-                : "bg-rental_beige_3 text-rental_primary border-rental_beige_3 hover:bg-transparent hover:text-rental_beige_3"
-            }`}
-          >
-            Login
-          </button>
-        </Link>
-        <Link href="/register">
-          <button
-            className={`text-[18px] font-medium py-1 px-4 cursor-pointer rounded-3xl border-2 transition-all duration-300 ${
-              scrolled
-                ? "bg-rental_beige_3 text-rental_primary border-rental_primary hover:bg-rental_primary hover:text-rental_beige_3"
-                : "bg-transparent text-rental_beige_3 border-rental_beige_3 hover:bg-rental_beige_3 hover:text-rental_primary"
-            }`}
-          >
-            Register
-          </button>
-        </Link>
+        {user ? (
+          <div className="relative">
+            <FaUserCircle
+              className="text-3xl text-rental_light_choc cursor-pointer"
+              onClick={() => setProfileMenuOpen(!profileMenuOpen)}
+            />
+            {profileMenuOpen && (
+              <div className="absolute right-0 mt-2 w-32 bg-white shadow-lg rounded-lg">
+                <button
+                  onClick={handleLogout}
+                  className="w-full text-left px-4 py-2 text-rental_primary hover:bg-gray-100"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
+        ) : (
+          <>
+            <Link href="/login">
+              <button
+                className={`text-[18px] font-medium py-1 px-7 border-2 cursor-pointer rounded-3xl transition-all duration-300 ${
+                  scrolled
+                    ? "bg-rental_primary text-rental_beige_3 border-rental_primary hover:bg-rental_beige_3 hover:text-rental_primary"
+                    : "bg-rental_beige_3 text-rental_primary border-rental_beige_3 hover:bg-transparent hover:text-rental_beige_3"
+                }`}
+              >
+                Login
+              </button>
+            </Link>
+            <Link href="/register">
+              <button
+                className={`text-[18px] font-medium py-1 px-4 cursor-pointer rounded-3xl border-2 transition-all duration-300 ${
+                  scrolled
+                    ? "bg-rental_beige_3 text-rental_primary border-rental_primary hover:bg-rental_primary hover:text-rental_beige_3"
+                    : "bg-transparent text-rental_beige_3 border-rental_beige_3 hover:bg-rental_beige_3 hover:text-rental_primary"
+                }`}
+              >
+                Register
+              </button>
+            </Link>
+          </>
+        )}
       </div>
 
       <button
@@ -143,22 +182,27 @@ function Navbar() {
         </div>
 
         <div className="w-full px-6 flex flex-col gap-2">
-          <Link href="/login">
+          {user ? (
             <button
               className="text-[16px] font-medium py-2 w-full border-2 cursor-pointer rounded-md bg-rental_primary text-rental_beige_3 border-rental_primary hover:bg-rental_beige_3 hover:text-rental_primary transition-all duration-300"
-              onClick={() => setMenuOpen(false)}
+              onClick={handleLogout}
             >
-              Login
+              Logout
             </button>
-          </Link>
-          <Link href="/register">
-            <button
-              className="text-[16px] font-medium py-2 w-full cursor-pointer rounded-md border-2 bg-rental_beige_3 text-rental_primary border-rental_primary hover:bg-rental_primary hover:text-rental_beige_3 transition-all duration-300"
-              onClick={() => setMenuOpen(false)}
-            >
-              Register
-            </button>
-          </Link>
+          ) : (
+            <>
+              <Link href="/login">
+                <button className="text-[16px] font-medium py-2 w-full border-2 cursor-pointer rounded-md bg-rental_primary text-rental_beige_3 border-rental_primary hover:bg-rental_beige_3 hover:text-rental_primary transition-all duration-300">
+                  Login
+                </button>
+              </Link>
+              <Link href="/register">
+                <button className="text-[16px] font-medium py-2 w-full cursor-pointer rounded-md border-2 bg-rental_beige_3 text-rental_primary border-rental_primary hover:bg-rental_primary hover:text-rental_beige_3 transition-all duration-300">
+                  Register
+                </button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </nav>
