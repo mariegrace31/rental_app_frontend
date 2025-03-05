@@ -13,7 +13,7 @@ const ubuntu = Ubuntu({
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
-  const hideLayout = pathname === "/register" || pathname === "/login";
+  const hideLayout = pathname === "/register" || pathname === "/login" || pathname === "/profile";
 
   return (
     <html lang="en">
