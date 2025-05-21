@@ -1,28 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import { FcGoogle } from "react-icons/fc";
 
 function Login() {
-  const router = useRouter();
-
-  const handleGoogleLogin = () => {
-    window.open("http://localhost:5001/auth/google", "_self");
-  };
-
-  // To check if the user is authenticated
-  useEffect(() => {
-    fetch("http://localhost:5001/auth/user", { credentials: "include" })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.email) {
-          router.push("/profile");
-        }
-      })
-      .catch((err) => console.error("Error checking authentication", err));
-  }, []);
 
   return (
     <div className="w-[40%] bg-rental_beige_3 flex flex-col justify-center items-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 border border-rental_beige_1 rounded-lg shadow-xl h-[40vh]">
